@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Izayoi,"> 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any pr,"> 
+    <meta name="description" content="基础第一个程序，Hello World12345678#include&amp;lt;iostream&amp;gt;			//导入标准输入输出流using namespace std;			//使用标准命名空间i,"> 
     <meta name="author" content="十六夜奏"> 
     <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -63,8 +63,7 @@
 
         </div>
         <div class="content markdown">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="第一个程序，Hello-World"><a href="#第一个程序，Hello-World" class="headerlink" title="第一个程序，Hello World"></a>第一个程序，Hello World</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;			//导入标准输入输出流</span></span><br><span class="line">using namespace std;			//使用标准命名空间</span><br><span class="line"></span><br><span class="line">int main()				//创建一个main函数</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">"Hello World!"</span>&lt;&lt;endl;	//输出并在屏幕上打印一个Hello World的字符串！</span><br><span class="line">	system(<span class="string">"pause"</span>);		//这行的意思是按任意键继续，暂停一下程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="第一个程序，Hello-World"><a href="#第一个程序，Hello-World" class="headerlink" title="第一个程序，Hello World"></a>第一个程序，Hello World</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;			//导入标准输入输出流</span></span><br><span class="line">using namespace std;			//使用标准命名空间</span><br><span class="line"></span><br><span class="line">int main()				//创建一个main函数</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">"Hello World!"</span>&lt;&lt;endl;	//输出并在屏幕上打印一个Hello World的字符串！</span><br><span class="line">	system(<span class="string">"pause"</span>);		//这行的意思是按任意键继续，暂停一下程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>上面是我写的第一个C++的程序，现在，咱来了解一下C++到底是啥？</p>
 <p>C++ 是一种静态类型的、编译式的、通用的、大小写敏感的、不规则的编程语言，</p>
@@ -82,15 +81,13 @@
 
 <p>意思就是wchar_t是短整型（short int）的别名（类似）；</p>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="上面提到的短整型是什么呢？"><a href="#上面提到的短整型是什么呢？" class="headerlink" title="上面提到的短整型是什么呢？"></a>上面提到的短整型是什么呢？</h3><p>一个基本类型，可以拥有一个或者多个的修饰符去进行修饰，修饰符一般只有以下几种：</p>
+<h3 id="基本数据类型的修饰符"><a href="#基本数据类型的修饰符" class="headerlink" title="基本数据类型的修饰符"></a>基本数据类型的修饰符</h3><p>上面提到的短整型是什么呢？</p>
+<p>一个基本类型，可以拥有一个或者多个的修饰符去进行修饰，修饰符一般只有以下几种：</p>
 <p>有标签（signed）    无标签（unsigned）</p>
 <p>短（short）    长（long）    长长（long long）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>下面用int来展示一下怎么用这些修饰符</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">short int	//短整型</span><br><span class="line"></span><br><span class="line">int		//整型</span><br><span class="line"></span><br><span class="line">long int	//长整形</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
@@ -113,7 +110,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一个程序，Hello-World"><span class="toc-number">1.1.</span> <span class="toc-text">第一个程序，Hello World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-的基础数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">C++的基础数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上面提到的短整型是什么呢？"><span class="toc-number">1.4.</span> <span class="toc-text">上面提到的短整型是什么呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.5.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一个程序，Hello-World"><span class="toc-number">1.1.</span> <span class="toc-text">第一个程序，Hello World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-的基础数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">C++的基础数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据类型的修饰符"><span class="toc-number">1.4.</span> <span class="toc-text">基本数据类型的修饰符</span></a></li></ol></li></ol>
         </div>
     
 </div>
