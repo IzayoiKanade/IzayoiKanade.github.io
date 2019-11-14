@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>モデル - 十六夜奏のブログ✨</title>
+    <title>C++学习笔记 - 十六夜奏のブログ✨</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
@@ -36,7 +36,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">モデル</h3>
+    <h3 class="subtitle">C++学习笔记</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -54,7 +54,7 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">モデル</h1>
+        <h1 class="title">C++学习笔记</h1>
         <div class="stuff">
             <span>十一月 12, 2019</span>
             
@@ -62,13 +62,22 @@
         </div>
         <div class="content markdown">
             <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="第一个程序，Hello-World"><a href="#第一个程序，Hello-World" class="headerlink" title="第一个程序，Hello World"></a>第一个程序，Hello World</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;			//导入标准输入输出流</span></span><br><span class="line">using namespace std;			//使用标准命名空间</span><br><span class="line"></span><br><span class="line">int main()				//创建一个main函数</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">"Hello World!"</span>&lt;&lt;endl;	//输出并在屏幕上打印一个Hello World的字符串！</span><br><span class="line">	system(<span class="string">"pause"</span>);		//这行的意思是按任意键继续，暂停一下程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="C-的基础数据类型"><a href="#C-的基础数据类型" class="headerlink" title="C++的基础数据类型"></a>C++的基础数据类型</h3><p>一般来说，C++提供了7中基本的数据类型，分别为：</p>
+<p>布尔型（bool）    字符型（char）    整型（int）</p>
+<p>单精度浮点型（float）    双精度浮点型（double）</p>
+<p>无（空）类型（void）    宽字符型（wchar_t）</p>
+<p>关于wchar_t的来源可参考以下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef short int wchar_t;</span><br></pre></td></tr></table></figure>
 
+<p>意思就是wchar_t是短整型（short int）的别名（类似）；</p>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="上面提到的短整型是什么呢？"><a href="#上面提到的短整型是什么呢？" class="headerlink" title="上面提到的短整型是什么呢？"></a>上面提到的短整型是什么呢？</h3><p>一个基本类型，可以拥有一个或者多个的修饰符去进行修饰，修饰符一般只有以下几种：</p>
+<p>有标签（signed）    无标签（unsigned）</p>
+<p>短（short）    长（long）    长长（long long）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
