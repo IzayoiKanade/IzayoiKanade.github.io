@@ -65,7 +65,7 @@
 
         </div>
         <div class="content markdown">
-            <h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="关于OOP（面向对象编程）"><a href="#关于OOP（面向对象编程）" class="headerlink" title="关于OOP（面向对象编程）"></a>关于OOP（面向对象编程）</h3><h3 id="C-程序的内存模型"><a href="#C-程序的内存模型" class="headerlink" title="C++程序的内存模型"></a>C++程序的内存模型</h3><p>目前来说咱不太懂啥意思，但是大体上意思是一个CPP程序对内存分成几个区，每个区要干啥，以前没有接触过</p>
+            <h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><h2 id="关于OOP（面向对象编程）"><a href="#关于OOP（面向对象编程）" class="headerlink" title="关于OOP（面向对象编程）"></a>关于OOP（面向对象编程）</h2><h2 id="C-程序的内存模型"><a href="#C-程序的内存模型" class="headerlink" title="C++程序的内存模型"></a>C++程序的内存模型</h2><p>目前来说咱不太懂啥意思，但是大体上意思是一个CPP程序对内存分成几个区，每个区要干啥，以前没有接触过</p>
 <p>一般分为4个区：</p>
 <p>代码区：存放函数体的二进制代码（CPU可执行的那种机器码），由操作系统去管理</p>
 <p>关于代码区注意，代码区是共享的和只读的，共享是防止你重开好几个程序每次都要重新放新的代码浪费内存，只读是防止你</p>
@@ -75,13 +75,14 @@
 <p>关于栈区注意，函数，绝对不要返回参数值得地址…因为栈区在函数结束的时候直接就废弃了那块地方了</p>
 <p>堆区：由程序员去分配和释放空间，如果我们用完了不释放他会一直在那儿，整个程序完全结束之后会由系统自动回收</p>
 <p>这四个区存在的意义是啥呢：不同区域存放的数据，赋予不同的生命周期，这样可以给我们最大的管理自由去灵活编程</p>
-<h3 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h3><p>上面的堆区，是有程序员管理的，那么怎么样去创建这种东西，答案就是用new关键字，下面写一下怎么用</p>
+<h2 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h2><p>上面的堆区，是有程序员管理的，那么怎么样去创建这种东西，答案就是用new关键字，下面写一下怎么用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new 数据类型;	</span><br><span class="line"></span><br><span class="line">//比如 new int(10);或者创建一个新的对象，写了一个类person，然后创建：new person p;</span><br></pre></td></tr></table></figure>
 
 
 
 
-<p>##构造函数和析构函数</p>
+<h1 id="类里的成员和函数"><a href="#类里的成员和函数" class="headerlink" title="类里的成员和函数"></a>类里的成员和函数</h1><h2 id="构造函数和析构函数"><a href="#构造函数和析构函数" class="headerlink" title="构造函数和析构函数"></a>构造函数和析构函数</h2><p>这边说一下，如果一个类在另一个类里当成员类，会先构建成员类在构建当前类，因为，没胳膊没腿哪里能造</p>
+<p>个正常人，析构函数调用顺序相反，大概可以理解成，先从小部件造，然后从大的部件分解（个人理解）</p>
 <h3 id="关于构造函数"><a href="#关于构造函数" class="headerlink" title="关于构造函数"></a>关于构造函数</h3><p>C++中拷贝构造函数的调用时机一般有三种</p>
 <p>·使用一个以及创建完毕的对象来初始化新对象</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p;</span><br><span class="line">Person p1(p);</span><br></pre></td></tr></table></figure>
@@ -108,6 +109,7 @@
 <p>写一条注意事项，再类里面创建了内存，一定一定一定要记得在析构里释放掉，C++没有垃圾回收一定要记得</p>
 <h3 id="初始化列表（啥意思，就是初始化对象里面的成员）"><a href="#初始化列表（啥意思，就是初始化对象里面的成员）" class="headerlink" title="初始化列表（啥意思，就是初始化对象里面的成员）"></a>初始化列表（啥意思，就是初始化对象里面的成员）</h3><p>来一段代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class Person()</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	int m_a;</span><br><span class="line">	int m_b;</span><br><span class="line">	Person(int a , int b):m_a(a), m_b(b)	//这是个构造函数，类名()：类成员(构造函数传入的)</span><br><span class="line">	&#123;					//上面就是写法，构造函数里面不需要写任何东西</span><br><span class="line">	&#125;					//其实就是和函数里写m_a = a;一个意思</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3">
@@ -129,7 +131,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶"><span class="toc-number">1.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于OOP（面向对象编程）"><span class="toc-number">1.1.</span> <span class="toc-text">关于OOP（面向对象编程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.2.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new关键字"><span class="toc-number">1.3.</span> <span class="toc-text">new关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于构造函数"><span class="toc-number">1.4.</span> <span class="toc-text">关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#☆关于构造函数"><span class="toc-number">1.5.</span> <span class="toc-text">☆关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#来学一下，”深拷贝与浅拷贝”"><span class="toc-number">1.6.</span> <span class="toc-text">来学一下，”深拷贝与浅拷贝”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化列表（啥意思，就是初始化对象里面的成员）"><span class="toc-number">1.7.</span> <span class="toc-text">初始化列表（啥意思，就是初始化对象里面的成员）</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#进阶"><span class="toc-number">1.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于OOP（面向对象编程）"><span class="toc-number">1.1.</span> <span class="toc-text">关于OOP（面向对象编程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.2.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new关键字"><span class="toc-number">1.3.</span> <span class="toc-text">new关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类里的成员和函数"><span class="toc-number">2.</span> <span class="toc-text">类里的成员和函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数和析构函数"><span class="toc-number">2.1.</span> <span class="toc-text">构造函数和析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于构造函数"><span class="toc-number">2.1.1.</span> <span class="toc-text">关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#☆关于构造函数"><span class="toc-number">2.1.2.</span> <span class="toc-text">☆关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#来学一下，”深拷贝与浅拷贝”"><span class="toc-number">2.1.3.</span> <span class="toc-text">来学一下，”深拷贝与浅拷贝”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化列表（啥意思，就是初始化对象里面的成员）"><span class="toc-number">2.1.4.</span> <span class="toc-text">初始化列表（啥意思，就是初始化对象里面的成员）</span></a></li></ol></li></ol></li></ol>
         </div>
     
 </div>
