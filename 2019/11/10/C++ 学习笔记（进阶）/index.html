@@ -78,6 +78,10 @@
 <h3 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h3><p>上面的堆区，是有程序员管理的，那么怎么样去创建这种东西，答案就是用new关键字，下面写一下怎么用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new 数据类型;	</span><br><span class="line"></span><br><span class="line">//比如 new int(10);或者创建一个新的对象，写了一个类person，然后创建：new person p;</span><br></pre></td></tr></table></figure>
 
+
+
+
+<p>##构造函数和析构函数</p>
 <h3 id="关于构造函数"><a href="#关于构造函数" class="headerlink" title="关于构造函数"></a>关于构造函数</h3><p>C++中拷贝构造函数的调用时机一般有三种</p>
 <p>·使用一个以及创建完毕的对象来初始化新对象</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p;</span><br><span class="line">Person p1(p);</span><br></pre></td></tr></table></figure>
@@ -87,6 +91,23 @@
 
 <p>·值传递的方式返回函数的返回值</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person <span class="function"><span class="title">doWork</span></span>()&#123;Person p1;	//函数的返回值是person，意思就是返回一个person的具体</span><br><span class="line">		<span class="built_in">return</span> p1;&#125;	//对象</span><br><span class="line">Person p = doWork();		//然后这句大意就是，Person p = p1，所以还是要调用</span><br><span class="line">				//拷贝构造函数</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="☆关于构造函数"><a href="#☆关于构造函数" class="headerlink" title="☆关于构造函数"></a>☆关于构造函数</h3><p>你不写，他会默认给你生成一个无参默认构造函数，一旦你写了任何的有参或者拷贝构造函数，</p>
+<p>他都不会再给你生成一个默认的无参构造。然后！你写了有参，他会给你在生成一个默认的拷贝</p>
+<p>意思就是：</p>
+<p>·不写，提供默认+拷贝</p>
+<p>·写有参，不提供默认，提供拷贝</p>
+<p>·写拷贝，不提供默认，不提供有参</p>
+<p>一般来说你只要创建了一个类，他都会默认给你提供：1、默认无参构造；2、默认拷贝构造；3、默认析构</p>
+<h3 id="来学一下，”深拷贝与浅拷贝”"><a href="#来学一下，”深拷贝与浅拷贝”" class="headerlink" title="来学一下，”深拷贝与浅拷贝”"></a>来学一下，”深拷贝与浅拷贝”</h3><p>浅拷贝的问题：堆区内存重复释放（啥意思呢，就是我的类创建了一个指针，拷贝构造会把指针也给拷贝过</p>
+<p>去然后问题就来了，我析构的时候清除所有内存，然后原对象指针指向的内存释放了，拷贝的对象指针指的</p>
+<p>和原来是同样的，那么拷贝的就没办法再释放了）</p>
+<p>看到一条弹幕总结得很到位：浅赋地址，共享内存；深开内存，复存内容</p>
+<p>写一条注意事项，再类里面创建了内存，一定一定一定要记得在析构里释放掉，C++没有垃圾回收一定要记得</p>
+<h3 id="初始化列表（啥意思，就是初始化对象里面的成员）"><a href="#初始化列表（啥意思，就是初始化对象里面的成员）" class="headerlink" title="初始化列表（啥意思，就是初始化对象里面的成员）"></a>初始化列表（啥意思，就是初始化对象里面的成员）</h3><p>来一段代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class Person()</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	int m_a;</span><br><span class="line">	int m_b;</span><br><span class="line">	Person(int a , int b):m_a(a), m_b(b)	//这是个构造函数，类名()：类成员(构造函数传入的)</span><br><span class="line">	&#123;					//上面就是写法，构造函数里面不需要写任何东西</span><br><span class="line">	&#125;					//其实就是和函数里写m_a = a;一个意思</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3">
@@ -108,7 +129,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶"><span class="toc-number">1.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于OOP（面向对象编程）"><span class="toc-number">1.1.</span> <span class="toc-text">关于OOP（面向对象编程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.2.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new关键字"><span class="toc-number">1.3.</span> <span class="toc-text">new关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于构造函数"><span class="toc-number">1.4.</span> <span class="toc-text">关于构造函数</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶"><span class="toc-number">1.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于OOP（面向对象编程）"><span class="toc-number">1.1.</span> <span class="toc-text">关于OOP（面向对象编程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.2.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new关键字"><span class="toc-number">1.3.</span> <span class="toc-text">new关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于构造函数"><span class="toc-number">1.4.</span> <span class="toc-text">关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#☆关于构造函数"><span class="toc-number">1.5.</span> <span class="toc-text">☆关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#来学一下，”深拷贝与浅拷贝”"><span class="toc-number">1.6.</span> <span class="toc-text">来学一下，”深拷贝与浅拷贝”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化列表（啥意思，就是初始化对象里面的成员）"><span class="toc-number">1.7.</span> <span class="toc-text">初始化列表（啥意思，就是初始化对象里面的成员）</span></a></li></ol></li></ol>
         </div>
     
 </div>
