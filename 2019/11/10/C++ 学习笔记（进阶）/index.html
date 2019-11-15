@@ -67,14 +67,16 @@
         <div class="content markdown">
             <h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="关于OOP（面向对象编程）"><a href="#关于OOP（面向对象编程）" class="headerlink" title="关于OOP（面向对象编程）"></a>关于OOP（面向对象编程）</h3><h3 id="C-程序的内存模型"><a href="#C-程序的内存模型" class="headerlink" title="C++程序的内存模型"></a>C++程序的内存模型</h3><p>目前来说咱不太懂啥意思，但是大体上意思是一个CPP程序对内存分成几个区，每个区要干啥，以前没有接触过</p>
 <p>一般分为4个区：</p>
-<pre><code>代码区：存放函数体的二进制代码（CPU可执行的那种机器码），由操作系统去管理</code></pre><p>关于代码区注意，代码区是共享的和只读的，共享是防止你重开好几个程序每次都要重新放新的代码浪费内存，只读是防止你</p>
+<p>代码区：存放函数体的二进制代码（CPU可执行的那种机器码），由操作系统去管理</p>
+<p>关于代码区注意，代码区是共享的和只读的，共享是防止你重开好几个程序每次都要重新放新的代码浪费内存，只读是防止你</p>
 <p>在程序运行时作弊，比如本来1000金币的道具，你可读可写，改成10银币他不就亏爆了</p>
-<pre><code>全局区：存放全局变量，静态变量，常量（const修饰的全局常量存放在全局区）
-
-栈区：由编译器去自动分配和释放空间，一般存放函数的参数值，还有局部变量（const修饰的局部常量放在这儿）</code></pre><p>关于栈区注意，函数，绝对不要返回参数值得地址…因为栈区在函数结束的时候直接就废弃了那块地方了</p>
-<pre><code>堆区：由程序员去分配和释放空间，如果我们用完了不释放他会一直在那儿，整个程序完全结束之后会由系统自动回收</code></pre><p>这四个区存在的意义是啥呢：不同区域存放的数据，赋予不同的生命周期，这样可以给我们最大的管理自由去灵活编程</p>
+<p>全局区：存放全局变量，静态变量，常量（const修饰的全局常量存放在全局区）</p>
+<p>栈区：由编译器去自动分配和释放空间，一般存放函数的参数值，还有局部变量（const修饰的局部常量放在这儿）</p>
+<p>关于栈区注意，函数，绝对不要返回参数值得地址…因为栈区在函数结束的时候直接就废弃了那块地方了</p>
+<p>堆区：由程序员去分配和释放空间，如果我们用完了不释放他会一直在那儿，整个程序完全结束之后会由系统自动回收</p>
+<p>这四个区存在的意义是啥呢：不同区域存放的数据，赋予不同的生命周期，这样可以给我们最大的管理自由去灵活编程</p>
 <h3 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h3><p>上面的堆区，是有程序员管理的，那么怎么样去创建这种东西，答案就是用new关键字，下面写一下怎么用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new 数据类型;	//比如 new int(10);或者创建一个新的对象，写了一个类person，然后创建：new person p;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new 数据类型;	</span><br><span class="line"></span><br><span class="line">//比如 new int(10);或者创建一个新的对象，写了一个类person，然后创建：new person p;</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3">
