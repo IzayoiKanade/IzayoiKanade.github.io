@@ -10,9 +10,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Izayoi,"> 
-    <meta name="description" content="进阶关于OOP（面向对象编程）C++程序的内存模型目前来说咱不太懂啥意思，但是大体上意思是一个CPP程序对内存分成几个区，每个区要干啥，以前没有接触过
-一般分为4个区：
-代码区：存放函数体的二进制代,"> 
+    <meta name="description" content="对了，写一个前言吧，我刚刚突发奇想，按照别人黑马里面视频的课件改一改，我这里的笔记可能会比较有条理
+#第一部分，内存的分区
+C++程序的内存模型目前来说咱不太懂啥意思，但是大体上意思是一个CPP程序,"> 
     <meta name="author" content="十六夜奏"> 
     <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -65,7 +65,9 @@
 
         </div>
         <div class="content markdown">
-            <h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><h2 id="关于OOP（面向对象编程）"><a href="#关于OOP（面向对象编程）" class="headerlink" title="关于OOP（面向对象编程）"></a>关于OOP（面向对象编程）</h2><h2 id="C-程序的内存模型"><a href="#C-程序的内存模型" class="headerlink" title="C++程序的内存模型"></a>C++程序的内存模型</h2><p>目前来说咱不太懂啥意思，但是大体上意思是一个CPP程序对内存分成几个区，每个区要干啥，以前没有接触过</p>
+            <p>对了，写一个前言吧，我刚刚突发奇想，按照别人黑马里面视频的课件改一改，我这里的笔记可能会比较有条理</p>
+<p>#第一部分，内存的分区</p>
+<h2 id="C-程序的内存模型"><a href="#C-程序的内存模型" class="headerlink" title="C++程序的内存模型"></a>C++程序的内存模型</h2><p>目前来说咱不太懂啥意思，但是大体上意思是一个CPP程序对内存分成几个区，每个区要干啥，以前没有接触过</p>
 <p>一般分为4个区：</p>
 <p>代码区：存放函数体的二进制代码（CPU可执行的那种机器码），由操作系统去管理</p>
 <p>关于代码区注意，代码区是共享的和只读的，共享是防止你重开好几个程序每次都要重新放新的代码浪费内存，只读是防止你</p>
@@ -81,9 +83,22 @@
 
 
 
-<h1 id="类里的成员和函数"><a href="#类里的成员和函数" class="headerlink" title="类里的成员和函数"></a>类里的成员和函数</h1><h2 id="构造函数和析构函数"><a href="#构造函数和析构函数" class="headerlink" title="构造函数和析构函数"></a>构造函数和析构函数</h2><p>这边说一下，如果一个类在另一个类里当成员类，会先构建成员类在构建当前类，因为，没胳膊没腿哪里能造</p>
+
+<h1 id="第二部分，引用"><a href="#第二部分，引用" class="headerlink" title="第二部分，引用"></a>第二部分，引用</h1><h1 id="第三部分，函数相关"><a href="#第三部分，函数相关" class="headerlink" title="第三部分，函数相关"></a>第三部分，函数相关</h1><h1 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h1><h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h2 id="对象初始化以及清理"><a href="#对象初始化以及清理" class="headerlink" title="对象初始化以及清理"></a>对象初始化以及清理</h2><h3 id="静态成员函数和静态成员"><a href="#静态成员函数和静态成员" class="headerlink" title="静态成员函数和静态成员"></a>静态成员函数和静态成员</h3><p>静态成员变量要在类内声明，类外去定义，要像下面那样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Person()</span><br><span class="line">&#123;</span><br><span class="line">	static int a;</span><br><span class="line">&#125;</span><br><span class="line">int Person::a = 0;</span><br></pre></td></tr></table></figure>
+
+<p>静态成员函数是可以访问静态成员的，但是不可以访问非静态成员，为什么呢，因为静态成员函数他是多个</p>
+<p>对象共用的，如果你去调用非静态成员，他就不知道改哪个对象的了……那么静态成员函数一般怎么调用</p>
+<p>看下面，两种方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class <span class="function"><span class="title">Person</span></span>()&#123;statc void <span class="function"><span class="title">func</span></span>()&#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	Person p;</span><br><span class="line">	p.func();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好！第二种：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class <span class="function"><span class="title">Person</span></span>()&#123;statc void <span class="function"><span class="title">func</span></span>()&#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	Person::func();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后说一下静态成员函数你放在类私有里面…很遗憾这个静态成员函数就无法用上面的方法访问了</p>
+<h3 id="构造函数和析构函数"><a href="#构造函数和析构函数" class="headerlink" title="构造函数和析构函数"></a>构造函数和析构函数</h3><p>这边说一下，如果一个类在另一个类里当成员类，会先构建成员类在构建当前类，因为，没胳膊没腿哪里能造</p>
 <p>个正常人，析构函数调用顺序相反，大概可以理解成，先从小部件造，然后从大的部件分解（个人理解）</p>
-<h3 id="关于构造函数"><a href="#关于构造函数" class="headerlink" title="关于构造函数"></a>关于构造函数</h3><p>C++中拷贝构造函数的调用时机一般有三种</p>
+<h4 id="关于构造函数"><a href="#关于构造函数" class="headerlink" title="关于构造函数"></a>关于构造函数</h4><p>C++中拷贝构造函数的调用时机一般有三种</p>
 <p>·使用一个以及创建完毕的对象来初始化新对象</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p;</span><br><span class="line">Person p1(p);</span><br></pre></td></tr></table></figure>
 
@@ -95,21 +110,31 @@
 
 
 
-<h3 id="☆关于构造函数"><a href="#☆关于构造函数" class="headerlink" title="☆关于构造函数"></a>☆关于构造函数</h3><p>你不写，他会默认给你生成一个无参默认构造函数，一旦你写了任何的有参或者拷贝构造函数，</p>
+<h4 id="☆关于构造函数"><a href="#☆关于构造函数" class="headerlink" title="☆关于构造函数"></a>☆关于构造函数</h4><p>你不写，他会默认给你生成一个无参默认构造函数，一旦你写了任何的有参或者拷贝构造函数，</p>
 <p>他都不会再给你生成一个默认的无参构造。然后！你写了有参，他会给你在生成一个默认的拷贝</p>
 <p>意思就是：</p>
 <p>·不写，提供默认+拷贝</p>
 <p>·写有参，不提供默认，提供拷贝</p>
 <p>·写拷贝，不提供默认，不提供有参</p>
 <p>一般来说你只要创建了一个类，他都会默认给你提供：1、默认无参构造；2、默认拷贝构造；3、默认析构</p>
-<h3 id="来学一下，”深拷贝与浅拷贝”"><a href="#来学一下，”深拷贝与浅拷贝”" class="headerlink" title="来学一下，”深拷贝与浅拷贝”"></a>来学一下，”深拷贝与浅拷贝”</h3><p>浅拷贝的问题：堆区内存重复释放（啥意思呢，就是我的类创建了一个指针，拷贝构造会把指针也给拷贝过</p>
+<h4 id="来学一下，”深拷贝与浅拷贝”"><a href="#来学一下，”深拷贝与浅拷贝”" class="headerlink" title="来学一下，”深拷贝与浅拷贝”"></a>来学一下，”深拷贝与浅拷贝”</h4><p>浅拷贝的问题：堆区内存重复释放（啥意思呢，就是我的类创建了一个指针，拷贝构造会把指针也给拷贝过</p>
 <p>去然后问题就来了，我析构的时候清除所有内存，然后原对象指针指向的内存释放了，拷贝的对象指针指的</p>
 <p>和原来是同样的，那么拷贝的就没办法再释放了）</p>
 <p>看到一条弹幕总结得很到位：浅赋地址，共享内存；深开内存，复存内容</p>
 <p>写一条注意事项，再类里面创建了内存，一定一定一定要记得在析构里释放掉，C++没有垃圾回收一定要记得</p>
-<h3 id="初始化列表（啥意思，就是初始化对象里面的成员）"><a href="#初始化列表（啥意思，就是初始化对象里面的成员）" class="headerlink" title="初始化列表（啥意思，就是初始化对象里面的成员）"></a>初始化列表（啥意思，就是初始化对象里面的成员）</h3><p>来一段代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class Person()</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	int m_a;</span><br><span class="line">	int m_b;</span><br><span class="line">	Person(int a , int b):m_a(a), m_b(b)	//这是个构造函数，类名()：类成员(构造函数传入的)</span><br><span class="line">	&#123;					//上面就是写法，构造函数里面不需要写任何东西</span><br><span class="line">	&#125;					//其实就是和函数里写m_a = a;一个意思</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="初始化列表（啥意思，就是初始化对象里面的成员）"><a href="#初始化列表（啥意思，就是初始化对象里面的成员）" class="headerlink" title="初始化列表（啥意思，就是初始化对象里面的成员）"></a>初始化列表（啥意思，就是初始化对象里面的成员）</h4><p>来一段代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class Person()</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	int m_a;</span><br><span class="line">	int m_b;</span><br><span class="line">	Person(int a , int b):m_a(a), m_b(b)	//这是个构造函数,类名():类成员(构造函数传入的)</span><br><span class="line">	&#123;					//上面就是写法，构造函数里面不需要写任何东西</span><br><span class="line">	&#125;					//其实就是和函数里写m_a = a;一个意思</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+
+
+<h2 id="C-对象模型和this指针"><a href="#C-对象模型和this指针" class="headerlink" title="C++对象模型和this指针"></a>C++对象模型和this指针</h2><p>这个学的是啥呢，说一下，对象的（注意是对象的不是类）成员变量和成员函数是分开地方存放的，然后静态</p>
+<p>的成员变量和函数，还有非静态成员函数！！！☆是不存在生成的对象里的；</p>
+<p>☆C++每个空对象创建的时候会给一个独一无二的1字节的内存空间，啥是空对象，class Person(){};毛都不写</p>
+<p>然后Person p;这就叫空对象，如果不是空的，那就不要这个1，该占多少就占多少；</p>
+<h2 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h2><p>当函数里形参和类里的成员变量同名时，可以用this指针区分，例子如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Person()</span><br><span class="line">&#123;public:</span><br><span class="line">	Person(int age)</span><br><span class="line">	&#123;</span><br><span class="line">		this-&gt;age = age;//这个时候四个age不知道哪个是哪个，你加了个this-&gt;，</span><br><span class="line">	&#125;			//之后，第一个编译器就会自动认为是成员函数，如果创建了多个实例对象</span><br><span class="line">	int age			//谁去调用这个函数，this就指向谁</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3">
@@ -131,7 +156,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#进阶"><span class="toc-number">1.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于OOP（面向对象编程）"><span class="toc-number">1.1.</span> <span class="toc-text">关于OOP（面向对象编程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.2.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new关键字"><span class="toc-number">1.3.</span> <span class="toc-text">new关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类里的成员和函数"><span class="toc-number">2.</span> <span class="toc-text">类里的成员和函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数和析构函数"><span class="toc-number">2.1.</span> <span class="toc-text">构造函数和析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于构造函数"><span class="toc-number">2.1.1.</span> <span class="toc-text">关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#☆关于构造函数"><span class="toc-number">2.1.2.</span> <span class="toc-text">☆关于构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#来学一下，”深拷贝与浅拷贝”"><span class="toc-number">2.1.3.</span> <span class="toc-text">来学一下，”深拷贝与浅拷贝”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化列表（啥意思，就是初始化对象里面的成员）"><span class="toc-number">2.1.4.</span> <span class="toc-text">初始化列表（啥意思，就是初始化对象里面的成员）</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new关键字"><span class="toc-number">2.</span> <span class="toc-text">new关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二部分，引用"><span class="toc-number"></span> <span class="toc-text">第二部分，引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三部分，函数相关"><span class="toc-number"></span> <span class="toc-text">第三部分，函数相关</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类和对象"><span class="toc-number"></span> <span class="toc-text">类和对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#封装"><span class="toc-number">1.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象初始化以及清理"><span class="toc-number">2.</span> <span class="toc-text">对象初始化以及清理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态成员函数和静态成员"><span class="toc-number">2.1.</span> <span class="toc-text">静态成员函数和静态成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数和析构函数"><span class="toc-number">2.2.</span> <span class="toc-text">构造函数和析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关于构造函数"><span class="toc-number">2.2.1.</span> <span class="toc-text">关于构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#☆关于构造函数"><span class="toc-number">2.2.2.</span> <span class="toc-text">☆关于构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#来学一下，”深拷贝与浅拷贝”"><span class="toc-number">2.2.3.</span> <span class="toc-text">来学一下，”深拷贝与浅拷贝”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化列表（啥意思，就是初始化对象里面的成员）"><span class="toc-number">2.2.4.</span> <span class="toc-text">初始化列表（啥意思，就是初始化对象里面的成员）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-对象模型和this指针"><span class="toc-number">3.</span> <span class="toc-text">C++对象模型和this指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this指针"><span class="toc-number">4.</span> <span class="toc-text">this指针</span></a></li></ol>
         </div>
     
 </div>
