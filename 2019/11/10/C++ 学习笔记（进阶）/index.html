@@ -77,6 +77,16 @@
 <p>这四个区存在的意义是啥呢：不同区域存放的数据，赋予不同的生命周期，这样可以给我们最大的管理自由去灵活编程</p>
 <h3 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h3><p>上面的堆区，是有程序员管理的，那么怎么样去创建这种东西，答案就是用new关键字，下面写一下怎么用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new 数据类型;	</span><br><span class="line"></span><br><span class="line">//比如 new int(10);或者创建一个新的对象，写了一个类person，然后创建：new person p;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关于构造函数"><a href="#关于构造函数" class="headerlink" title="关于构造函数"></a>关于构造函数</h3><p>C++中拷贝构造函数的调用时机一般有三种</p>
+<p>·使用一个以及创建完毕的对象来初始化新对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p;</span><br><span class="line">Person p1(p);</span><br></pre></td></tr></table></figure>
+
+<p>·值传递的方式给函数参数传值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void doWork(Person p)&#123;&#125;	//创建一个值传递函数，需要传入一个对象p的副本（注意！副本！）</span><br><span class="line">Person p;</span><br><span class="line">doWork(p);		//所以要调用拷贝构造函数去传</span><br></pre></td></tr></table></figure>
+
+<p>·值传递的方式返回函数的返回值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person <span class="function"><span class="title">doWork</span></span>()&#123;Person p1;	//函数的返回值是person，意思就是返回一个person的具体对象</span><br><span class="line">		<span class="built_in">return</span> p1;&#125;</span><br><span class="line">Person p = doWork();		//然后这句大意就是，Person p = p1，所以还是要调用拷贝构造函数</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3">
@@ -98,7 +108,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶"><span class="toc-number">1.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于OOP（面向对象编程）"><span class="toc-number">1.1.</span> <span class="toc-text">关于OOP（面向对象编程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.2.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new关键字"><span class="toc-number">1.3.</span> <span class="toc-text">new关键字</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶"><span class="toc-number">1.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于OOP（面向对象编程）"><span class="toc-number">1.1.</span> <span class="toc-text">关于OOP（面向对象编程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-程序的内存模型"><span class="toc-number">1.2.</span> <span class="toc-text">C++程序的内存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new关键字"><span class="toc-number">1.3.</span> <span class="toc-text">new关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于构造函数"><span class="toc-number">1.4.</span> <span class="toc-text">关于构造函数</span></a></li></ol></li></ol>
         </div>
     
 </div>
