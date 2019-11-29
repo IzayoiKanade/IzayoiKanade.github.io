@@ -5,13 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>C++学习笔记（再进阶） - 十六夜奏のブログ✨</title>
+    <title>C++学习笔记（泛型编程） - 十六夜奏のブログ✨</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Izayoi,"> 
-    <meta name="description" content="模板函数模板和类模板来说说什么是模板
-"> 
+    <meta name="description" content="模板函数模板和类模板来说说什么是模板，模板就是一个比如，函数，function(int a, int b){交换ab}，这个函数只能交换int型的，写一个模板，啥类型都能换
+比如：
+1234567t,"> 
     <meta name="author" content="十六夜奏"> 
     <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -37,7 +38,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">C++学习笔记（再进阶）</h3>
+    <h3 class="subtitle">C++学习笔记（泛型编程）</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -55,7 +56,7 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">C++学习笔记（再进阶）</h1>
+        <h1 class="title">C++学习笔记（泛型编程）</h1>
         <div class="stuff">
             <span>十一月 23, 2019</span>
             
@@ -64,7 +65,41 @@
 
         </div>
         <div class="content markdown">
-            <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><h2 id="函数模板和类模板"><a href="#函数模板和类模板" class="headerlink" title="函数模板和类模板"></a>函数模板和类模板</h2><p>来说说什么是模板</p>
+            <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><h2 id="函数模板和类模板"><a href="#函数模板和类模板" class="headerlink" title="函数模板和类模板"></a>函数模板和类模板</h2><p>来说说什么是模板，模板就是一个比如，函数，function(int a, int b){交换ab}，这个函数只能交换int型的，写一个模板，啥类型都能换</p>
+<p>比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename T&gt; //告诉编译器紧跟着的这个T别报错，意思就是T是个通用的数据类型，</span><br><span class="line">void func(T &amp;a , T &amp;b) //你去调用函数的时候，他会自己选，比如两个int两个double，</span><br><span class="line">&#123;			//但是不能一个double一个int</span><br><span class="line">	int temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用这个函数咋用，有两种方法，一个是 func(a, b);    第二个是func<int>(a, b);直接可以给他一个类型不用编译器自己推算也行</p>
+<p>函数模板可以提高函数复用性，T必须为相同的数据类型，而且必须确认出T的数据类型才能用，比如func()，你不给他参数就用不了</p>
+<p>但是！你不给他参数，你可以用第二种方法去调用它，func<int>();最好别这么玩吧。。。</p>
+<p>函数模板用typename，类模板用class，其实class在这两个里都能用，有人想区分，有人觉得好记，我就决定全用class，好记~</p>
+<p>函数模板和普通函数一般优先调普通函数，函数模板可以重载，问题来了，怎么必定调用函数模板！</p>
+<p>func&lt;&gt;(a, b);    这样调，尖括号里加不加东西都行，但是，a和b必须先声明，刚刚试了，直接调用int类型的10 20是不行的，func报错…..</p>
+<p>刚试了一下，不能用T &amp;a,要注意一下参数列表的使用方式，T a就可以用 a，b，100，10，20这样去调用</p>
+<p>☆一般，我们提供了模板就别写多个普通函数了，容易出现二义性，而且看代码的时候也看的脑阔疼</p>
+<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>啥事隐式类型转换，char a和int 10想加，char他会自己转成int，就是直接用a的ASCII码，这叫隐式类型转换，模板是不能用隐式类型转换的</p>
+<p>因为不知道怎么选，选哪个= =；当然，你可以用func<int>();    诶！这就可以了嘛！给的建议是每次用模板的时候最好自己写啥类型，好看又不会出错</p>
+<p>还有一个，一个模板一个用int当参数的函数，如果用char当参数去调用，他会选模板，因为编译器觉得方便，调int的函数还要类型转换，编译器嫌麻烦……</p>
+<h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>模板的局限性也是有的，比如你用两个数组比大小….就难了，或者就是两个类，有解决方法，比如运算符==重载，但是有可能觉得麻烦，用下面的代码也行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&lt;&gt; bool myCompare(Person &amp;p1, Person &amp;p2)&#123;全部比一遍，相同返回<span class="literal">true</span>，不同返回flase&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尖括号里不需要写东西，只是告诉他这个模板能用来比类，其实也是类似运算符重载，函数体里代码都差不多；</p>
+<h2 id="类模板"><a href="#类模板" class="headerlink" title="类模板"></a>类模板</h2><p>类模板咋写：</p>
+<p>template&lt;有几个参数写几个，class Nametype, class Agetype, 总之那逗号分割，xxtype其实等同于T，只不过多了几个T区分一下&gt;<br>class Person{ public: Nametype name;    Agetype age;    然后该怎么操作这两个常量就按照类的语法去写就是 };</p>
+<p>顺便说一下类模板和函数模板是有区别的，函数可以用的时候不在函数后面加尖括号指定类型，类必须要指定，不指定用不了，比如上面那个</p>
+<p>string类型的名字，int的年龄，必须要指定，Person&lt;string, int&gt; p(“谁谁谁”, 18);    但是！你可以在class Agetype = int;这样去定义一个默认类型</p>
+<p>这样Person<string>就行了，不需要加那个int，因为已经默认是了；</p>
+<p>类模板中的成员函数并不是一开始就创建的，而是在调用的时候才去创建的！！！！！（记得回来理解这句话，暂时有点懵）</p>
+<p>顺便如果想用查看类中的模板类型，可以使用typeid(T).name()可以看到</p>
+<h3 id="类模板对象做函数的参数"><a href="#类模板对象做函数的参数" class="headerlink" title="类模板对象做函数的参数"></a>类模板对象做函数的参数</h3><p>这啥意思，就是你写了个类模板，创建了一个对象，然后你调用的一个函数要传入这个对象，咋传，下面写写：</p>
+<p>void func1(Person&lt;string,int&gt; &amp;p){};    这样去换，传地址然后记得用尖括号表明类模板参数类型，如果你直接用T1，T2去代替，也行，下面写第二种方法</p>
+<p>template&lt;class T1, class T2&gt;<br>void func2(Person&lt;T1, T2&gt; &amp;p){}    说实在的，这就是一个类似函数模板，但是！在声明对象的时候，一定一定要记得加指定类型，上面其实已经强调过了</p>
+<p>template<class T><br>void func3(T &amp;p){}            这样也能用</p>
+<p>☆好的，来总结一下，这三种都叫啥：1、指定传入类型； 2、参数模板化； 3、类模板化； 说实在的前面两种就是函数模板类模板的结合</p>
+<h3 id="类模板与继承"><a href="#类模板与继承" class="headerlink" title="类模板与继承"></a>类模板与继承</h3><p>子类继承父类模板，该怎么写，看看下面，两种：</p>
+<p>class Son : public Base    //这是错的，比如父类有一个T类型的a变量，T是啥类型，子类不知道，所以！看下面那种</p>
+<p>class Son : public Base<int>    //这就对了，上面那个T类型，指定成int，子类就知道应该放多大的空间，因为T你可以是任何类型，继承下来的时候就不好分配空间，</p>
+<p>至少，你得要告诉子类父类有多大的数据才行；</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
@@ -87,7 +122,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#模板"><span class="toc-number">1.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数模板和类模板"><span class="toc-number">1.1.</span> <span class="toc-text">函数模板和类模板</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#模板"><span class="toc-number">1.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数模板和类模板"><span class="toc-number">1.1.</span> <span class="toc-text">函数模板和类模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐式类型转换"><span class="toc-number">1.2.</span> <span class="toc-text">隐式类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#局限性"><span class="toc-number">1.3.</span> <span class="toc-text">局限性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类模板"><span class="toc-number">1.4.</span> <span class="toc-text">类模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板对象做函数的参数"><span class="toc-number">1.4.1.</span> <span class="toc-text">类模板对象做函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板与继承"><span class="toc-number">1.4.2.</span> <span class="toc-text">类模板与继承</span></a></li></ol></li></ol></li></ol>
         </div>
     
 </div>
