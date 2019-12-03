@@ -100,6 +100,21 @@
 <p>class Son : public Base    //这是错的，比如父类有一个T类型的a变量，T是啥类型，子类不知道，所以！看下面那种</p>
 <p>class Son : public Base<int>    //这就对了，上面那个T类型，指定成int，子类就知道应该放多大的空间，因为T你可以是任何类型，继承下来的时候就不好分配空间，</p>
 <p>至少，你得要告诉子类父类有多大的数据才行；</p>
+<p>template<class T><br>class Son : public Base<T>    //但是！注意注意，这样写也行！把子类也变成了模板类，其实你可以加多个T1，子类加多个T1变量，这样更清楚一点，这样写T</p>
+<p>就传到父类模板类里了</p>
+<h3 id="类模板成员函数的类外实现"><a href="#类模板成员函数的类外实现" class="headerlink" title="类模板成员函数的类外实现"></a>类模板成员函数的类外实现</h3><p>直接写一下，咋写：<br>template&lt;class T1, class T2&gt;<br>void Person&lt;T1, T2&gt;::Person(T1 name, T2 age){}    //这样写，用template指定多少个类型，类模板名称后面加尖括号，然后在函数里面用</p>
+<p>###类模板的分文件编写</p>
+<p>一般来说分文件不都是包含include”xxx.h”吗，头文件，但是！类模板你包含头文件没用，之前的课题提到过，类模板一开始是不会去创建成员函数的，只有当你要</p>
+<p>用它的时候，他才会去创建；所以你包含头文件，编译器永远看不到.cpp里的东西，因为根本就不存在cpp里定义的函数声明；咋解决，包含类的.cpp成员函数实现</p>
+<p>的文件，这就是第一种解决方式：include”xxx.cpp”</p>
+<p>注意了！但是一般开发的时候你不可能直接一堆源码甩人脸上让人看的头都大，咋办呢，还有一个方法，别分开写，.h和.cpp写一起，然后把后缀改成.hpp，据老师说这是</p>
+<p>一个约定俗成的名称，.hpp代表着这是一个类模板文件</p>
+<h3 id="类模板与友元"><a href="#类模板与友元" class="headerlink" title="类模板与友元"></a>类模板与友元</h3><p>全局友元有两种实现方式，类内，和类外，类外麻烦的要死，下面会写，先做一个简单的类内实现说明：</p>
+<p>跟普通友元一样，直接在在类里没有任何作用域的地方写，friend void youyuan(Person&lt;T1, T2&gt; &amp;p){}     这样，该咋实现咋实现只不过要用T1和T2，通用类型而已</p>
+<p>然后！类外实现…你在类里声明之后，实现代码要不就是放在类前面，要不就是类前面声明多一次友元，然后再在友元前声明一次类，意思就是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">class Person;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void youyuan();</span><br><span class="line">template&lt;classT&gt;</span><br><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">firend void youyuan&lt;&gt;();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>总之，我晕了，所以有一个建议！！！能用类内实现类模板友元函数，就直接类内实现，类外…少用或者尽可能别用，除非必须要用</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
@@ -122,7 +137,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#模板"><span class="toc-number">1.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数模板和类模板"><span class="toc-number">1.1.</span> <span class="toc-text">函数模板和类模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐式类型转换"><span class="toc-number">1.2.</span> <span class="toc-text">隐式类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#局限性"><span class="toc-number">1.3.</span> <span class="toc-text">局限性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类模板"><span class="toc-number">1.4.</span> <span class="toc-text">类模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板对象做函数的参数"><span class="toc-number">1.4.1.</span> <span class="toc-text">类模板对象做函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板与继承"><span class="toc-number">1.4.2.</span> <span class="toc-text">类模板与继承</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#模板"><span class="toc-number">1.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数模板和类模板"><span class="toc-number">1.1.</span> <span class="toc-text">函数模板和类模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐式类型转换"><span class="toc-number">1.2.</span> <span class="toc-text">隐式类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#局限性"><span class="toc-number">1.3.</span> <span class="toc-text">局限性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类模板"><span class="toc-number">1.4.</span> <span class="toc-text">类模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板对象做函数的参数"><span class="toc-number">1.4.1.</span> <span class="toc-text">类模板对象做函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板与继承"><span class="toc-number">1.4.2.</span> <span class="toc-text">类模板与继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板成员函数的类外实现"><span class="toc-number">1.4.3.</span> <span class="toc-text">类模板成员函数的类外实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类模板与友元"><span class="toc-number">1.4.4.</span> <span class="toc-text">类模板与友元</span></a></li></ol></li></ol></li></ol>
         </div>
     
 </div>

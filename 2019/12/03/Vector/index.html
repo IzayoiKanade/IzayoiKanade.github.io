@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>C++学习笔记 - 十六夜奏のブログ✨</title>
+    <title>Vector&gt;  - 十六夜奏のブログ✨</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Izayoi,"> 
-    <meta name="description" content="基础第一个程序，Hello World12345678#include&amp;lt;iostream&amp;gt;			//导入标准输入输出流using namespace std;			//使用标准命名空间i,"> 
+    
     <meta name="author" content="十六夜奏"> 
     <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -36,7 +36,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">C++学习笔记</h3>
+    <h3 class="subtitle">Vector> </h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -54,46 +54,26 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">C++学习笔记</h1>
+        <h1 class="title">Vector> </h1>
         <div class="stuff">
-            <span>十一月 10, 2019</span>
+            <span>十二月 03, 2019</span>
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
-
 
         </div>
         <div class="content markdown">
-            <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="第一个程序，Hello-World"><a href="#第一个程序，Hello-World" class="headerlink" title="第一个程序，Hello World"></a>第一个程序，Hello World</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;			//导入标准输入输出流</span></span><br><span class="line">using namespace std;			//使用标准命名空间</span><br><span class="line"></span><br><span class="line">int main()				//创建一个main函数</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">"Hello World!"</span>&lt;&lt;endl;	//输出并在屏幕上打印一个Hello World的字符串！</span><br><span class="line">	system(<span class="string">"pause"</span>);		//这行的意思是按任意键继续，暂停一下程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>上面是我写的第一个C++的程序，现在，咱来了解一下C++到底是啥？</p>
-<p>C++ 是一种静态类型的、编译式的、通用的、大小写敏感的、不规则的编程语言，</p>
-<p>支持过程化编程、面向对象编程和泛型编程。</p>
-<p>它被认为是一种中级语言，综合了高级语言和低级语言的特点（至于是啥现在咱还不得而知~）。</p>
-<p>C++是由本贾尼·斯特劳斯特卢普（Bjarne Stroustrup，C++之父）1979年在新泽西州美利山</p>
-<p>贝尔实验室开始设计开发的。C++进一步的完善了C，一开始被命名为带类（class）的C，后来在1983年</p>
-<p>改名为C++。事实上C++是C的一个超集，任何的C程序都可以被认为是合法的C++程序。</p>
-<h3 id="C-的基础数据类型"><a href="#C-的基础数据类型" class="headerlink" title="C++的基础数据类型"></a>C++的基础数据类型</h3><p>一般来说，C++提供了7中基本的数据类型，分别为：</p>
-<p>布尔型（bool）    字符型（char）    整型（int）</p>
-<p>单精度浮点型（float）    双精度浮点型（double）</p>
-<p>无（空）类型（void）    宽字符型（wchar_t）</p>
-<p>关于wchar_t的来源可参考以下代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef short int wchar_t;</span><br></pre></td></tr></table></figure>
-
-<p>意思就是wchar_t是短整型（short int）的别名（类似）；</p>
-<h3 id="基本数据类型的修饰符"><a href="#基本数据类型的修饰符" class="headerlink" title="基本数据类型的修饰符"></a>基本数据类型的修饰符</h3><p>上面提到的短整型是什么呢？</p>
-<p>一个基本类型，可以拥有一个或者多个的修饰符去进行修饰，修饰符一般只有以下几种：</p>
-<p>有标签（signed）    无标签（unsigned）</p>
-<p>短（short）    长（long）    长长（long long）</p>
-<p>下面用int来展示一下怎么用这些修饰符</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">short int	//短整型</span><br><span class="line"></span><br><span class="line">int		//整型</span><br><span class="line"></span><br><span class="line">long int	//长整形</span><br></pre></td></tr></table></figure>
-
-
+            
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
-                <source type="audio/mpeg" src="\msc\konekonoosanpo.mp3">
+                <source type="audio/mpeg" src="">
             </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3'></li>
+                        
+                    
+                </ul>
             
         </div>
         
@@ -111,7 +91,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一个程序，Hello-World"><span class="toc-number">1.1.</span> <span class="toc-text">第一个程序，Hello World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-的基础数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">C++的基础数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据类型的修饰符"><span class="toc-number">1.4.</span> <span class="toc-text">基本数据类型的修饰符</span></a></li></ol></li></ol>
+            
         </div>
     
 </div>
