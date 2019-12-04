@@ -5,12 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>String - 十六夜奏のブログ✨</title>
+    <title>Vector容器 - 十六夜奏のブログ✨</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Izayoi,"> 
-    
+    <meta name="description" content="String是？string是C++风格的字符串，而它的本质是一个类（class）
+类内服封装了一个char（char指针），其实就是一个char型的容器，管理着这个字符串
+String的各种成员函,"> 
     <meta name="author" content="十六夜奏"> 
     <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -36,7 +38,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">String</h3>
+    <h3 class="subtitle">Vector容器</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -54,14 +56,23 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">String</h1>
+        <h1 class="title">Vector容器</h1>
         <div class="stuff">
             <span>十二月 03, 2019</span>
             
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
 
         </div>
         <div class="content markdown">
-            
+            <h1 id="String是？"><a href="#String是？" class="headerlink" title="String是？"></a>String是？</h1><p>string是C++风格的字符串，而它的本质是一个类（class）</p>
+<p>类内服封装了一个char<em>（char指针），其实就是一个char</em>型的容器，管理着这个字符串</p>
+<h2 id="String的各种成员函数以及构造方法"><a href="#String的各种成员函数以及构造方法" class="headerlink" title="String的各种成员函数以及构造方法"></a>String的各种成员函数以及构造方法</h2><p>☆我决定直接总结，因为当时跳过了这部分笔记</p>
+<p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">//构造函数</span><br><span class="line">string();			//string str;</span><br><span class="line"></span><br><span class="line">string(const char* s)		//string str(<span class="string">"用字符串初始化"</span>) const char* str = <span class="string">"holy"</span>;</span><br><span class="line"></span><br><span class="line">string(vonst string&amp; str)	//string str1(str) 用一个str去初始化另一个str</span><br><span class="line"></span><br><span class="line">string(int n, char c)		//string str2(10, <span class="string">'a'</span>) 用10个a去初始化str2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//赋值</span><br><span class="line"></span><br><span class="line">string&amp; operator=(const char* s);	//string str; str = <span class="string">"hello"</span>;</span><br><span class="line"></span><br><span class="line">string&amp; operator=(const string &amp;s);	//string str1; str1 = str;</span><br><span class="line"></span><br><span class="line">string&amp; operator=(char c);		//string str2; str2 = <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">string&amp; assign(const char* s);		//string str3; str3.assign(<span class="string">"这里随便写一个字符串"</span>);</span><br><span class="line"></span><br><span class="line">string&amp; assign(const char* s, int n);	//string str4; str4.assign(<span class="string">"还是一个字符串"</span>, 3); 把前三个字符赋值给str4</span><br><span class="line"></span><br><span class="line">string&amp; assign(const string &amp;s);	//string str5; str5.assign(str4);</span><br><span class="line"></span><br><span class="line">string&amp; assign(int n, char c);		//string str6; str6.assign(10, <span class="string">'a'</span>); 10个a给str6赋值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//拼接，就在末尾接上另一个string字符串</span><br><span class="line"></span><br><span class="line">string&amp; operator+=(const char* str);	//string str = <span class="string">"你"</span>; str += <span class="string">"爱"</span>; 重载+=</span><br><span class="line"></span><br><span class="line">string&amp; operator+=(const char c);	//str += <span class="string">'?'</span>; 上面的追加字符串，这里追加字符</span><br><span class="line"></span><br><span class="line">string&amp; operator+=(const string &amp;str);	//string str1 = <span class="string">"谁？"</span>; str += str1; 这三行运行完：你爱？谁？</span><br><span class="line"></span><br><span class="line">string&amp; append(const char* s);		//str.append(<span class="string">"I"</span>); 追加一个字符串</span><br><span class="line"></span><br><span class="line">string&amp; append(const char* s, int n);	//str.append(<span class="string">"loveyou"</span>, 4); 把loveu字符串前四个接在str后面</span><br><span class="line"></span><br><span class="line">string&amp; append(const string &amp;s);	//str.append(str1); 把一个字符串接在另一个字符串后</span><br><span class="line"></span><br><span class="line">string&amp; append(const string &amp;s, int pos, int n); //str.append(str1, 0, 1); 上面的重载</span><br><span class="line">后面两个数字的意思是从第一个下标起，截取几个元素，接在str的后面</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//查找和替换</span><br><span class="line"></span><br><span class="line">int find(const string&amp; str, int pos = 0) const;</span><br></pre></td></tr></table></figure>
+
+<p>☆const char* str = “Hello World!”;    这是个c语言风格字符串</p>
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="">
@@ -91,7 +102,7 @@
     </div>
     
         <div class='side'>
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#String是？"><span class="toc-number">1.</span> <span class="toc-text">String是？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#String的各种成员函数以及构造方法"><span class="toc-number">1.1.</span> <span class="toc-text">String的各种成员函数以及构造方法</span></a></li></ol></li></ol>
         </div>
     
 </div>

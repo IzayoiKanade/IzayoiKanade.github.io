@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Izayoi,"> 
-    
+    <meta name="description" content="Vector是？vector数据结构和数组非常相似，可以称它为 单端数组
+vector是动态扩展的，数组你不能改容量，vector可以，然后vector的头是封闭的，他可以让你从尾部插入删除元素，并,"> 
     <meta name="author" content="十六夜奏"> 
     <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -63,7 +64,36 @@
 
         </div>
         <div class="content markdown">
-            
+            <h1 id="Vector是？"><a href="#Vector是？" class="headerlink" title="Vector是？"></a>Vector是？</h1><p>vector数据结构和数组非常相似，可以称它为 单端数组</p>
+<p>vector是动态扩展的，数组你不能改容量，vector可以，然后vector的头是封闭的，他可以让你从尾部插入删除元素，并且它的迭代器是支持随机访问的迭代器</p>
+<p>☆动态扩展： 比如你数组放满了，就不能放了，vector放满了他会找另一块更大的内存空间去用，再把原来的数组原封不动拷贝过去</p>
+<h2 id="创建vector容器"><a href="#创建vector容器" class="headerlink" title="创建vector容器"></a>创建vector容器</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;T&gt; v;					//vector&lt;int&gt; v</span><br><span class="line"></span><br><span class="line">vector(v.begin(), v.end());			//vector&lt;int&gt; v1(v.begin(), v.end())		把v的头到尾复制一遍插入v1</span><br><span class="line"></span><br><span class="line">vector(n, elem);				//vector&lt;int&gt; v2(10, 100)			10个100插入vector</span><br><span class="line"></span><br><span class="line">vector(const vector&amp; vec);			//vector&lt;int&gt; v3(v)</span><br></pre></td></tr></table></figure>
+
+<p>这些都能用来给vector容器创建；下面写一下赋值操作</p>
+<h2 id="Vector容器赋值"><a href="#Vector容器赋值" class="headerlink" title="Vector容器赋值"></a>Vector容器赋值</h2><p>函数原型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vector&amp; operator=(const vector&amp; vec);		//v1 = v</span><br><span class="line"></span><br><span class="line">assin(beg, end)					//v2(v.begin(), v.end())</span><br><span class="line"></span><br><span class="line">assign(n, elem)					//v3(10, 100)	10个100</span><br></pre></td></tr></table></figure>
+
+<p>这些是赋值用的，然后来谢谢各种操作</p>
+<h2 id="Vector容量和大小比较"><a href="#Vector容量和大小比较" class="headerlink" title="Vector容量和大小比较"></a>Vector容量和大小比较</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">empty();		//v.empty()	返回真容器就是空的，0（<span class="literal">false</span>）就为空</span><br><span class="line"></span><br><span class="line">capacity();		//v.capacity()	返回的是vector的容量</span><br><span class="line"></span><br><span class="line">size();			//v.size()	返回的是大小，容量会比大小多那么几个，防止内存溢出</span><br><span class="line"></span><br><span class="line">resize(int num);	//v.resize(15)	把空间和大小扩展到15，比原来10个多了5个的时候，用0填充</span><br><span class="line"></span><br><span class="line">resize(int num, elem);	//v.resize(15, 100) 跟上面一样，是上面的重载，这个的意思就是我不想用0填充，用100填充</span><br></pre></td></tr></table></figure>
+
+<p>☆提一提，resize()，比如原来有10大小13容量，resize(5)一个5，这样容量还是13，但是，大小会只剩下5，第五个后面的会删了</p>
+<h2 id="Vector插入和删除"><a href="#Vector插入和删除" class="headerlink" title="Vector插入和删除"></a>Vector插入和删除</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">push_back(ele)						//v.push_back(插入一个啥)	尾插法</span><br><span class="line"></span><br><span class="line">pop_back();						//尾删，直接调就行</span><br><span class="line"></span><br><span class="line">insert(const_iterator pos, ele);			//v.insert(v.begin(), 100)前面放迭代器(就是个指针)，把后面的数据插入到迭代器所指的位置</span><br><span class="line"></span><br><span class="line">insert(const_iterator pos, int count, ele);		//上面的重载	在迭代器所指位置插入count个数据，（v.begin(),10,100）在头插入10个100</span><br><span class="line"></span><br><span class="line">erase(const_iterator pos);				//erase(v.begin())	删除迭代器所指位置的元素</span><br><span class="line"></span><br><span class="line">erase(const_iterator start, const_iterator end);	//上面的重载，从头到尾删erase(v.begin(), v.end())</span><br><span class="line"></span><br><span class="line">clear();						//跟上面那个第二个重载一样，从头到尾删vector</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vector容器中数据存取操作"><a href="#Vector容器中数据存取操作" class="headerlink" title="Vector容器中数据存取操作"></a>Vector容器中数据存取操作</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">at(int idx);	//v.at(idx)就是类似数组arr[i]的访问方式</span><br><span class="line"></span><br><span class="line">operator[];	//v[i] 就是重载[]跟上面的差不多</span><br><span class="line"></span><br><span class="line">front();	//v.front() 获取第一个元素</span><br><span class="line"></span><br><span class="line">back();		//v.back() 获取最后一个元素</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vector容器互换"><a href="#Vector容器互换" class="headerlink" title="Vector容器互换"></a>Vector容器互换</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swap(vec);	//v.swap(v1) 互换v和v1里面的元素，完全互换，不存在内存溢出</span><br></pre></td></tr></table></figure>
+
+
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="">
@@ -93,7 +123,7 @@
     </div>
     
         <div class='side'>
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vector是？"><span class="toc-number">1.</span> <span class="toc-text">Vector是？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建vector容器"><span class="toc-number">1.1.</span> <span class="toc-text">创建vector容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector容器赋值"><span class="toc-number">1.2.</span> <span class="toc-text">Vector容器赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector容量和大小比较"><span class="toc-number">1.3.</span> <span class="toc-text">Vector容量和大小比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector插入和删除"><span class="toc-number">1.4.</span> <span class="toc-text">Vector插入和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector容器中数据存取操作"><span class="toc-number">1.5.</span> <span class="toc-text">Vector容器中数据存取操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector容器互换"><span class="toc-number">1.6.</span> <span class="toc-text">Vector容器互换</span></a></li></ol></li></ol>
         </div>
     
 </div>
