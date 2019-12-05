@@ -5,12 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deque���� - 十六夜奏のブログ✨</title>
+    <title>Deque容器 - 十六夜奏のブログ✨</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Izayoi,"> 
-    <meta name="description" content="Deque�ǣ�"> 
+    <meta name="description" content="Deque是？Deque是双端数组，可以对头端进行插入删除
+他和vector有啥区别呢？vector从头端插入很麻烦并且效率低，vector存放的数据越多头插效率越低
+但是！vector访问元素的速,"> 
     <meta name="author" content="十六夜奏"> 
     <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -36,7 +38,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">Deque����</h3>
+    <h3 class="subtitle">Deque容器</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -54,16 +56,56 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">Deque����</h1>
+        <h1 class="title">Deque容器</h1>
         <div class="stuff">
             <span>十二月 03, 2019</span>
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%D1%A7%CF%B0%EF%BF%BD%CA%BC%EF%BF%BD/" rel="tag">ѧϰ�ʼ�</a></li></ul>
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h1 id="Deque�ae�"><a href="#Deque�ae�" class="headerlink" title="Deque�ǣ�"></a>Deque�ǣ�</h1>
+            <h1 id="Deque是？"><a href="#Deque是？" class="headerlink" title="Deque是？"></a>Deque是？</h1><p>Deque是双端数组，可以对头端进行插入删除</p>
+<p>他和vector有啥区别呢？vector从头端插入很麻烦并且效率低，vector存放的数据越多头插效率越低</p>
+<p>但是！vector访问元素的速度会比deque更快</p>
+<p>deque的容器内部有一个中控器（就是放缓冲区的地址的指针数组）；然后每个指针指向一片缓冲区（类似一个数组）；可以把Deque容器理解成一个指向一个数组的指针的数组</p>
+<p>然后由于和vector有很多重名以及用法也极度类似的函数，一下，会进行精简解释</p>
+<h2 id="Deque构造函数"><a href="#Deque构造函数" class="headerlink" title="Deque构造函数"></a>Deque构造函数</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deque&lt;T&gt; deqT;			//deque&lt;int&gt; d;</span><br><span class="line"></span><br><span class="line">deque(beg, end);		//从begin（）到end（）复制</span><br><span class="line"></span><br><span class="line">deque(n, elem)			//n个elem赋值</span><br><span class="line"></span><br><span class="line">deque(const deque&amp; deq);	//deque&lt;int&gt; d1(d)	用d复制</span><br></pre></td></tr></table></figure>
+<p>☆这里提一点，函数调用容器，想限定容器为const状态，需要注意迭代器的可读或者可读写状态，有一个迭代器：const_iterator</p>
+<h2 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h2><p>其实和vector一样，重载=，两个assign直接写一下原型吧</p>
+<p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deque&amp; operator=(const deque&amp; deq);</span><br><span class="line"></span><br><span class="line">assign(beg, end)				//deq.assign(d.begin(), d.end())	从头到尾</span><br><span class="line"></span><br><span class="line">assign(n, elem)					//n个elem塞进去</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="判断大小或是否为空"><a href="#判断大小或是否为空" class="headerlink" title="判断大小或是否为空"></a>判断大小或是否为空</h2><p>也很像vector的成员函数</p>
+<p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deque.empty();		//判断为空</span><br><span class="line"></span><br><span class="line">deque.size();		//判断大小</span><br><span class="line"></span><br><span class="line">deque.resize(num);	//重新指定deque容器的长度num（一个int型），比原来减少了删元素，比原来多了默认加0填充，和vector的很像</span><br><span class="line"></span><br><span class="line">deque.resize(num, elem);//上面的重载，num是长度，elem是不用0，用elem填充</span><br></pre></td></tr></table></figure>
+
+<p>☆这个时候可以注意到，deque是没有容量大小的成员函数的，因为deque是没容量的，可以无限加，只能去查deque容器的大小</p>
+<h2 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h2><p>这一部分和vector比多了一个头端的操作，具体请看↓</p>
+<p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">push_back(elem);	//尾插</span><br><span class="line"></span><br><span class="line">push_front(elem);	//头插</span><br><span class="line"></span><br><span class="line">pop_back();		//尾删</span><br><span class="line"></span><br><span class="line">pop_front();		//头删</span><br></pre></td></tr></table></figure>
+
+<p>具体用法就不写了，反正很简单，elem就是插入的元素</p>
+<p>然后来看看指定位置插入删除</p>
+<p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">insert(pos, elem);	//这三个都是pos下标位置插入elem，插入n个elem，插入一个deque容器的begin到end（就是一整个）</span><br><span class="line"></span><br><span class="line">insert(pos, n, elem);</span><br><span class="line"></span><br><span class="line">insert(pos, begin, end);</span><br><span class="line"></span><br><span class="line">clean();		//这个跟下面那个beg，end是一样的，整个deque容器删掉</span><br><span class="line"></span><br><span class="line">erase(beg, end);</span><br><span class="line"></span><br><span class="line">erase(pos)		//删除pos下标的元素</span><br></pre></td></tr></table></figure>
+
+<p>☆头插的时候是往前加，比如插入一个100，再插一个200，原来的容器是：1，2，3；插入之后：200,100,1,2,3    就变成这样了</p>
+<h2 id="数据存取"><a href="#数据存取" class="headerlink" title="数据存取"></a>数据存取</h2><p>也和vector一样</p>
+<p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">at(int idx);	//d.at(i) 返回deque容器的第i个元素，跟下面的重载[]是一个意思，d[i]也行</span><br><span class="line"></span><br><span class="line">operator[];</span><br><span class="line"></span><br><span class="line">front();	//返回第一个元素(头)，下面那个back是返回最后一个(尾)</span><br><span class="line"></span><br><span class="line">back();</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Deque排序"><a href="#Deque排序" class="headerlink" title="Deque排序"></a>Deque排序</h2><p>deque提供了一个算法，把容器区间放进去就能排好序，vector好像没学过这个，看看怎么用吧！</p>
+<p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort(iterator beg, iterator end);	//sort(d.begin(), d.end());</span><br></pre></td></tr></table></figure>
+
+<p>☆sort默认从小到大排，然后sort使用的时候需要包含algorithm头文件，算法这里只是做一个引导，让我发现有这么个东西</p>
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="">
@@ -93,7 +135,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Deque�ae�"><span class="toc-number">1.</span> <span class="toc-text">Deque�ǣ�</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Deque是？"><span class="toc-number">1.</span> <span class="toc-text">Deque是？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Deque构造函数"><span class="toc-number">1.1.</span> <span class="toc-text">Deque构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#赋值"><span class="toc-number">1.2.</span> <span class="toc-text">赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断大小或是否为空"><span class="toc-number">1.3.</span> <span class="toc-text">判断大小或是否为空</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入和删除"><span class="toc-number">1.4.</span> <span class="toc-text">插入和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存取"><span class="toc-number">1.5.</span> <span class="toc-text">数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deque排序"><span class="toc-number">1.6.</span> <span class="toc-text">Deque排序</span></a></li></ol></li></ol>
         </div>
     
 </div>

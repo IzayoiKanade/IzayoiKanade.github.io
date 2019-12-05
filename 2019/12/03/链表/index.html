@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>List 链表 - 十六夜奏のブログ✨</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Izayoi,"> 
+    <meta name="description" content="List是？list实质上是一个链表，在STL中他是一个双向可循环链表；
+链表的优点是可以对任意位置进行快速插入或删除； 缺点是遍历速度没数组快，并且占用空间比数组大
+list的优点：
+·采用动态分,"> 
+    <meta name="author" content="十六夜奏"> 
+    <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">十六夜奏のブログ✨</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">List 链表</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;" target="_blank" rel="noopener"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">List 链表</h1>
+        <div class="stuff">
+            <span>十二月 03, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="List是？"><a href="#List是？" class="headerlink" title="List是？"></a>List是？</h1><p>list实质上是一个链表，在STL中他是一个双向可循环链表；</p>
+<p>链表的优点是可以对任意位置进行快速插入或删除； 缺点是遍历速度没数组快，并且占用空间比数组大</p>
+<p>list的优点：</p>
+<p>·采用动态分配内存，不会造成内存浪费和溢出；</p>
+<p>·链表执行插入删除非常方便，不需要移动大量元素，修改指针即可</p>
+<p>list的缺点：</p>
+<p>·链表灵活，但是空间（指针域）和时间（遍历）额外耗费比较大</p>
+<p>☆List有一个重要的性质，插入和删除操作都不会造成原有的list迭代器的实效，这在vector是不成立的；这句话是啥意思呢？</p>
+<p>vector满了不是会开辟一个新空间复制过去吗？旧的地址的迭代器就会实效，他会新建一个空间和迭代器继续去使用；</p>
+<h1 id="接下来看看List的成员函数"><a href="#接下来看看List的成员函数" class="headerlink" title="接下来看看List的成员函数"></a>接下来看看List的成员函数</h1><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">list&lt;T&gt; lst; 		//正常构造</span><br><span class="line"></span><br><span class="line">list(beg, end);		//头尾拷贝构造</span><br><span class="line"></span><br><span class="line">list(n, elem);		//n个elem赋值构造</span><br><span class="line"></span><br><span class="line">list(const list&amp; lst);	//list&lt;int&gt; lst(lst1);		拷贝构造</span><br></pre></td></tr></table></figure>
+
+<p>其实之前几种差不多，记不起来去看vector的笔记</p>
+<h2 id="赋值和交换"><a href="#赋值和交换" class="headerlink" title="赋值和交换"></a>赋值和交换</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assign(beg, end);	//调用assign从begin到end拷贝</span><br><span class="line"></span><br><span class="line">assign(n, elem);	//n个elem赋值</span><br><span class="line"></span><br><span class="line">list&amp; operator=(const list&amp; lst);	//=运算符重载</span><br><span class="line"></span><br><span class="line">swap(lst);		//lst1.swap(lst);	lst1把自己和lst交换所有元素</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="大小和操作"><a href="#大小和操作" class="headerlink" title="大小和操作"></a>大小和操作</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">size();		//判断大小</span><br><span class="line"></span><br><span class="line">empty();	//判断是否为空，是返回1，不是返回0</span><br><span class="line"></span><br><span class="line">resize(num);</span><br><span class="line"></span><br><span class="line">resize(num, elem);	//重新用num指定链表大小，如果多了用elem填充，少了删元素；上面的重载，上面用0填充</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">push_back(elem);</span><br><span class="line"></span><br><span class="line">pop_back();</span><br><span class="line"></span><br><span class="line">push_front(elem);</span><br><span class="line"></span><br><span class="line">pop_front();	//上面四个尾插尾删头插头删</span><br><span class="line"></span><br><span class="line">insert(pos, elem);	//pos位置插入elem元素</span><br><span class="line"></span><br><span class="line">insert(pos, n, elem);	//pos位置插入n个elem元素</span><br><span class="line"></span><br><span class="line">insert(pos, beg, end);	//pos位置插入一个容器的beg到end区间所有元素</span><br><span class="line"></span><br><span class="line">clean();</span><br><span class="line"></span><br><span class="line">erase(beg, end);	//和上面clean一样，删除整个list</span><br><span class="line"></span><br><span class="line">erase(pos);	//删除pos下标未知的数据，返回下一个数据的位置</span><br><span class="line"></span><br><span class="line">remove(elem);	//删除容器中值为 elem 的所有元素</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="数据存取"><a href="#数据存取" class="headerlink" title="数据存取"></a>数据存取</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">front();</span><br><span class="line"></span><br><span class="line">back();</span><br></pre></td></tr></table></figure>
+<p>返回头尾两个元素</p>
+<p>☆注意一下，list不提供at和[]重载的方式去访问中间元素，为啥？因为list不是一个连续的物理位置，而且list的迭代器是不支持随机访问的</p>
+<p>举个例子，创建一个迭代器it = lst.begin(); 你可以it++，但是不能it+1，同样是+1为啥不行，因为你+1了可以+2+3，所以他就不提供+，这样</p>
+<p>意味着他不能跳跃式访问链表</p>
+<h2 id="反转和排序"><a href="#反转和排序" class="headerlink" title="反转和排序"></a>反转和排序</h2><p>函数原型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reverse();	//L.reverse();会把整个链表反过来</span><br><span class="line"></span><br><span class="line">sort();		//L.sort();	从小到大排序</span><br></pre></td></tr></table></figure>
+<p>☆注意！！！    所有不支持随机访问迭代器的容器，他会在成员函数里提供一个sort()，直接去调用就可以了</p>
+<p>之前有一个sort(begin, end)需要包含算法头文件的那个排序，所有只提供不支持随机访问迭代器的容器，都！不！可！以！用！</p>
+<p>接下来说说，sort()这个成员函数怎么从小到达排，直接看下面的代码，具体自行体会：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bool myCompare（T v1, T v2）</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">return</span> v1 &gt; v2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">L.sort(myCompare);	//这样可以把链表从大到小排列</span><br></pre></td></tr></table></figure>
+
+<p>对于自定义数据类型比如创建一个Person，你要告诉他怎么去排序，自己写一个Compare函数，从大到小还是从小到达，或者如果</p>
+<p>相等，通过别的不同的元素怎么去排列</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#List是？"><span class="toc-number">1.</span> <span class="toc-text">List是？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#接下来看看List的成员函数"><span class="toc-number">2.</span> <span class="toc-text">接下来看看List的成员函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数"><span class="toc-number">2.1.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#赋值和交换"><span class="toc-number">2.2.</span> <span class="toc-text">赋值和交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大小和操作"><span class="toc-number">2.3.</span> <span class="toc-text">大小和操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入和删除"><span class="toc-number">2.4.</span> <span class="toc-text">插入和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存取"><span class="toc-number">2.5.</span> <span class="toc-text">数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反转和排序"><span class="toc-number">2.6.</span> <span class="toc-text">反转和排序</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
