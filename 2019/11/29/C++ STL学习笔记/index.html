@@ -81,7 +81,14 @@
 <p>仿函数：就是“()”运算符重载</p>
 <p>适配器：用来修饰迭代器、仿函数、或者容器接口的东西。（完全不明所以，需要学习）</p>
 <p>空间配置器：负责空间的配置和管理；其实就是垃圾回收机制（GC）</p>
-<p>##</p>
+<h1 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h1><p>来谈谈函数对象，其实就是重载函数调用操作符的泪，就是重载()，他的对象称之为函数调用</p>
+<p>函数对象使用重载()时，行为很类似函数调用所以也叫作仿函数</p>
+<p>本质：</p>
+<p>·函数对象（仿函数）是一个类，而且不是一个函数</p>
+<p>函数对象在使用的时候和普通函数一样，可以调用，有参数，有返回值；但是本身已经超出了普通函数的概念，他能有自己的状态；</p>
+<p>他能作为参数传递</p>
+<p>简单来说，创建一个类，类重载一个小括号，用的时候，创建一个对象，对象调用()重载，就是仿函数；而且仿函数是有自己的状态</p>
+<p>的，比如一个普通函数你想记录自己调用了多少次需要另外创建一个参数，仿函数本身就是个类，他可以自己用自己的成员去记录</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
@@ -112,7 +119,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#谈谈STL"><span class="toc-number">1.</span> <span class="toc-text">谈谈STL</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#谈谈STL"><span class="toc-number">1.</span> <span class="toc-text">谈谈STL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数对象"><span class="toc-number">2.</span> <span class="toc-text">函数对象</span></a></li></ol>
         </div>
     
 </div>

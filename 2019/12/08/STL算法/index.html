@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>STL算法 - 十六夜奏のブログ✨</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Izayoi,"> 
+    <meta name="description" content="STL算法今天来学一下STL中的常用算法，算法有三个头文件：  
+· 是所有STL头文件中最大的一个，涉及到比较、查找、交换、遍历、复制、修改
+· 体积很小，包括几个在序列上进行简单数学运算的模板函,"> 
+    <meta name="author" content="十六夜奏"> 
+    <link rel="alternative" href="atom.xml" title="十六夜奏のブログ✨" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">十六夜奏のブログ✨</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">STL算法</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;" target="_blank" rel="noopener"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">STL算法</h1>
+        <div class="stuff">
+            <span>十二月 08, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="STL算法"><a href="#STL算法" class="headerlink" title="STL算法"></a>STL算法</h1><p>今天来学一下STL中的常用算法，算法有三个头文件：<algorithm> <numeric> <functional></p>
+<p>·<algorithm> 是所有STL头文件中最大的一个，涉及到比较、查找、交换、遍历、复制、修改</p>
+<p>·<numeric> 体积很小，包括几个在序列上进行简单数学运算的模板函数（一脸懵逼，没用过）</p>
+<p>·<functional> 定义了一下模板类，用以声明一些函数对象（就是调仿函数用的）</p>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for_each(iterator beg, iterator end, _func);	//遍历</span><br><span class="line"></span><br><span class="line">transform(iterator beg1, iterator end1， iterator beg2, _func);	//整个容器搬运到另一个容器中(记得先resize要不内存溢出)</span><br></pre></td></tr></table></figure>
+
+<p>最后那个_func是函数，你需要写一个函数然后输出当前参数，再把这函数调用，就是_func</p>
+<p>beg1 end1是第一个容器的开始结束，beg2是第二个容器的开始，</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">find(iterator beg, iterator end, value);	//就是普通查找value值相同的元素</span><br><span class="line"></span><br><span class="line">find_if(iterator beg, iterator end, _Pred);	//第三个就是谓词(_Pred)，查找的条件，前两个都是返回迭代器</span><br><span class="line"></span><br><span class="line">adjacent_find(iterator beg, iterator end);	//找相邻重复的两个元素，啥意思呢比如102133；33就是相邻重复</span><br><span class="line"></span><br><span class="line">binary_search(iterator beg, iterator end, value);	//查找value值是否存在于容器中，返回值为bool，同时必须作用于有序序列</span><br><span class="line"></span><br><span class="line">count(iterator beg, iterator end, value);	//统计容器中value的个数，统计自定义数据类型需要重载==告诉底层怎么比对</span><br><span class="line"></span><br><span class="line">count_if(iterator beg, iterator end, _Pred);	//按谓词条件统计，比如大于16的元素个数</span><br></pre></td></tr></table></figure>
+<p>前三个都是返回一个迭代器，第四个adjacent返回的是一个bool，同时他作用的容器必须为有序序列，就是123456，这样，不能521561这样</p>
+<p>因为会出错，如果无序</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sort(iterator beg, iterator end, _Pred);	//经常用的那个sort，从小到大排序</span><br><span class="line"></span><br><span class="line">random_shuffle(iterator beg, iterator end);	//随机打乱指定区间元素</span><br><span class="line"></span><br><span class="line">merge(iterator beg1, iterator end1， iterator beg2,  iterator end2, iterator dest);</span><br><span class="line">//具体来说说merge，将两个容器合并(不是元素相加)，并存储至新容器；注：两个容器必须是 有序的； </span><br><span class="line">dest为目标容器起始迭代器，并且记得resize目标容器，</span><br><span class="line"></span><br><span class="line">reverse(iterator beg, iterator end);	//就是反转整个容器，之前用过的</span><br></pre></td></tr></table></figure>
+
+<p>srand((unsigned int)time(NULL));随机数种子，先记着这句，到时候回来看看</p>
+<h2 id="拷贝和替换"><a href="#拷贝和替换" class="headerlink" title="拷贝和替换"></a>拷贝和替换</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">copy(iterator beg,  iterator end, iterator dest);	//拷贝整个容器，dest还是目标容器的迭代器</span><br><span class="line"></span><br><span class="line">replace(iterator beg, iterator end, oldvalue, newvalue);</span><br><span class="line">//就是将区间内的oldvalue值得所有元素替换为newvalue值得新元素，放入时不考虑大小，全部放进去</span><br><span class="line"></span><br><span class="line">replace_if(iterator beg, iterator end, _Pred, newvalue);//和上面的一样，只不过第三个改成了谓词（自己写一个条件）</span><br><span class="line"></span><br><span class="line">swap(container c1, container c2);		//交换两个容器，把c1和c2交换</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="常用算术生成算法"><a href="#常用算术生成算法" class="headerlink" title="常用算术生成算法"></a>常用算术生成算法</h2><p>算术生成算法属于小型算法，记得包含头文件<numeric></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">accumulate(iterator beg, iterator end， value);	</span><br><span class="line">//计算区间内容器总和，value干啥的呢，就是起始累加值，就是容器区间元素总和+value，平常写个0就行</span><br><span class="line"></span><br><span class="line">fill(iterator beg, iterator end， value);</span><br><span class="line">//将区间内所有元素填充成value，啥意思呢，比如resize之后用的0或者别的填充多的空间，然后想改，直</span><br><span class="line">接用fill就可以改成自己想要的value值</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="常用集合算法"><a href="#常用集合算法" class="headerlink" title="常用集合算法"></a>常用集合算法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set_intersection(iterator beg1, iterator end1， iterator beg2,  iterator end2, iterator dest);</span><br><span class="line">//求两个容器的交集，并放入新的目标容器，dest还是目标容器迭代器，多记一下</span><br><span class="line"></span><br><span class="line">set_union(iterator beg1, iterator end1， iterator beg2,  iterator end2, iterator dest);</span><br><span class="line">//这个是求并集的</span><br><span class="line"></span><br><span class="line">set_defference(iterator beg1, iterator end1， iterator beg2,  iterator end2, iterator dest);</span><br><span class="line">//这个是求差集，差集分为谁先谁后，减去并集之后，第一个容器剩下的元素的集合叫差集</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://amachamusic.chagasi.com/mp3/konekonoosanpo.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STL算法"><span class="toc-number">1.</span> <span class="toc-text">STL算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#遍历"><span class="toc-number">1.1.</span> <span class="toc-text">遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找"><span class="toc-number">1.2.</span> <span class="toc-text">查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序"><span class="toc-number">1.3.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拷贝和替换"><span class="toc-number">1.4.</span> <span class="toc-text">拷贝和替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用算术生成算法"><span class="toc-number">1.5.</span> <span class="toc-text">常用算术生成算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用集合算法"><span class="toc-number">1.6.</span> <span class="toc-text">常用集合算法</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
